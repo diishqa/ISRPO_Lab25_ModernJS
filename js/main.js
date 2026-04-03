@@ -133,55 +133,135 @@ function delay(ms) {
 }
 delay(1000)
     .then((message) => console.log(message));
-function fetchUserData(userId) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if (userId >0) {
-                resolve({
-                    id: userId,
-                    name: "Диана Кузьмина",
-                    email: "adasdas@mail.com",
-                });
-            } else{
-                reject("Неверный ID пользователя");
-            }
-        }, 1500)
-    })
-}
-fetchUserData(1)
-    .then((user) => console.log("Пользователб:", user))
-    .catch((error) => console.log("Ошибка:", error));
-function step1() {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve ("Шаг 1 завершен"), 500);
-    });
-}
-function step2(previousResult) {
-    return new Promise((resolve) => {
-        setTimeout(()=> resolve(`${previousResult} -> Шаг 2 завершен`), 500);
-    });
-}
-function step3 (previousResult) {
-    return new Promise((resolve) => {
-        setTimeout(() => resolve(`${previousResult} -> Шаг 3 завершен`), 500);
-    });
-}
-step1()
-    .then((result1) => step2(result1))
-    .then((result2) => step3(result2))
-    .then((finalResult) => console.log("Финальный результат:", finalResult))
-    .catch((error) => console.log("Ошибка в цепочке:", error));
-function checkInventory(productName, inStock) {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            if(inStock) {
-                resolve(`ТОвар ${productName} в наличии`);
-            } else {
-                reject(`Товар ${productName} не в наличии`);
-            }
-        }, 1000)
-    })
-}
-checkInventory("Кошелек", true)
-    .then((message) => console.log("В наличии:", message))
-    .catch((error) => console.log("Ошибка:", error));
+// function fetchUserData(userId) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (userId >0) {
+//                 resolve({
+//                     id: userId,
+//                     name: "Диана Кузьмина",
+//                     email: "adasdas@mail.com",
+//                 });
+//             } else{
+//                 reject("Неверный ID пользователя");
+//             }
+//         }, 1500)
+//     })
+// }
+// fetchUserData(1)
+//     .then((user) => console.log("Пользователб:", user))
+//     .catch((error) => console.log("Ошибка:", error));
+// function step1() {
+//     return new Promise((resolve) => {
+//         setTimeout(() => resolve ("Шаг 1 завершен"), 500);
+//     });
+// }
+// function step2(previousResult) {
+//     return new Promise((resolve) => {
+//         setTimeout(()=> resolve(`${previousResult} -> Шаг 2 завершен`), 500);
+//     });
+// }
+// function step3 (previousResult) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => resolve(`${previousResult} -> Шаг 3 завершен`), 500);
+//     });
+// }
+// step1()
+//     .then((result1) => step2(result1))
+//     .then((result2) => step3(result2))
+//     .then((finalResult) => console.log("Финальный результат:", finalResult))
+//     .catch((error) => console.log("Ошибка в цепочке:", error));
+// function checkInventory(productName, inStock) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if(inStock) {
+//                 resolve(`ТОвар ${productName} в наличии`);
+//             } else {
+//                 reject(`Товар ${productName} не в наличии`);
+//             }
+//         }, 1000)
+//     })
+// }
+// checkInventory("Кошелек", true)
+//     .then((message) => console.log("В наличии:", message))
+//     .catch((error) => console.log("Ошибка:", error));
+
+// 25
+// console.log("Async/Await");
+// async function greet() {
+//     return "Привет!"
+// }
+// greet().then((message) => console.log(message));
+// function getWeather() {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve( {temp: 22, condition: "Солнечно"});
+//         }, 1000);
+//     });
+// }
+// async function showWeather() {
+//     console.log("Загрузка погоды...");
+//     const weather = await getWeather();
+//     console.log(`Температура: ${weather.temp}C, ${weather.condition}`);
+// };
+// showWeather();
+// async function fetchData(shouldFail) {
+//     return new Promise((resolve, reject) => {
+//         setTimeout(() => {
+//             if (shouldFail) {
+//                 reject("Ошибка при загрузке данных");
+//             } else {
+//                 resolve( {dara: "Важные данные"});
+//             }
+//         }, 800);
+//     });
+// }
+// async function getData() {
+//     try {
+//         const result = await fetchData(false);
+//         console.log("Успешно:", result.data);
+//         const failResult = await fetchData(true);
+//         console.log("Это не выполнится");
+//     } catch (error) {
+//         console.log("Поймана ошибка:", error);
+//     }
+// }
+// getData();
+
+// async function cookDiner() {
+//     console.log("Начинаем готовить...");
+//     const pasta = await delay(1000).then(() => "Паста готова");
+//     console.log(pasta);
+//     const sauce = await delay(500). then(() => "Соус готов");
+//     console.log(sauce);
+//     const salad = await delay(700).then(() => "Салат готов");
+//     console.log(salad);
+//     return "Ужин готов!";
+// }
+// cookDiner().then((result) => console.log(result));
+// async function  cookDinerFast() {
+//     console.log("Готовим все одновременно...");
+//     const [pasta, sauce, salad] = await Promise.all([
+//         delay(1000).then(() => "Паста готова"),
+//         delay(500).then(() => "Соус готов"),
+//         delay(700).then(() => "Салат готов"),
+//     ]);
+//     console.log(pasta, sauce, salad);
+//     return "Ужин готов быстрее!";
+// } 
+
+
+// cookDinerFast().then((result) => console.log(result));
+// async function processOrder() {
+//     try {
+//         const inStock = await processOrder(false);
+//         console.log("В наличии:", result.data);
+//         const price = await processOrder();
+//         console.log("Расчет");
+//         const pod = await processOrder(true);
+//         console.log("Подтверждение закказа");
+//     } catch (error) {
+//         console.log("Поймана ошибка:", error);
+//     }
+// }
+// processOrder();
